@@ -1,1135 +1,497 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Maverick Solutions — Web & Digital Services</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-<style>
-  :root {
-    --ink: #0d0d0d;
-    --paper: #f4f0e8;
-    --accent: #e84c1e;
-    --muted: #888;
-    --card: #fff;
-    --border: #e0dbd0;
-  }
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-html { scroll-behavior: smooth; }
-
-body {
-font-family: ‘DM Sans’, sans-serif;
-background: var(–paper);
-color: var(–ink);
-overflow-x: hidden;
-}
-
-/* ── NOISE OVERLAY ── */
-body::before {
-content: ‘’;
-position: fixed;
-inset: 0;
-background-image: url(“data:image/svg+xml,%3Csvg viewBox=‘0 0 200 200’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cfilter id=‘n’%3E%3CfeTurbulence type=‘fractalNoise’ baseFrequency=‘0.9’ numOctaves=‘4’ stitchTiles=‘stitch’/%3E%3C/filter%3E%3Crect width=‘100%25’ height=‘100%25’ filter=‘url(%23n)’ opacity=‘0.04’/%3E%3C/svg%3E”);
-pointer-events: none;
-z-index: 999;
-opacity: .5;
-}
-
-/* ── NAV ── */
-nav {
-position: fixed;
-top: 0; left: 0; right: 0;
-z-index: 100;
-display: flex;
-align-items: center;
-justify-content: space-between;
-padding: 1.2rem 3rem;
-background: rgba(244,240,232,0.88);
-backdrop-filter: blur(12px);
-border-bottom: 1px solid var(–border);
-}
-
-.nav-logo {
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 1.6rem;
-letter-spacing: 2px;
-color: var(–ink);
-text-decoration: none;
-}
-
-.nav-logo span { color: var(–accent); }
-
-.nav-links {
-display: flex;
-gap: 2rem;
-list-style: none;
-}
-
-.nav-links a {
-font-family: ‘DM Mono’, monospace;
-font-size: .75rem;
-letter-spacing: 1.5px;
-text-transform: uppercase;
-color: var(–ink);
-text-decoration: none;
-opacity: .7;
-transition: opacity .2s;
-}
-
-.nav-links a:hover { opacity: 1; color: var(–accent); }
-
-.nav-cta {
-font-family: ‘DM Mono’, monospace;
-font-size: .75rem;
-letter-spacing: 1px;
-text-transform: uppercase;
-background: var(–ink);
-color: var(–paper);
-border: none;
-padding: .6rem 1.4rem;
-cursor: pointer;
-transition: background .2s;
-text-decoration: none;
-}
-
-.nav-cta:hover { background: var(–accent); }
-
-/* ── HERO ── */
-#hero {
-min-height: 100vh;
-display: grid;
-grid-template-columns: 1fr 1fr;
-align-items: center;
-padding: 8rem 3rem 4rem;
-gap: 3rem;
-position: relative;
-overflow: hidden;
-}
-
-.hero-bg-text {
-position: absolute;
-bottom: -1rem;
-right: -1rem;
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: clamp(8rem, 18vw, 22rem);
-color: transparent;
--webkit-text-stroke: 1px rgba(0,0,0,0.06);
-pointer-events: none;
-line-height: 1;
-user-select: none;
-}
-
-.hero-tag {
-font-family: ‘DM Mono’, monospace;
-font-size: .72rem;
-letter-spacing: 3px;
-text-transform: uppercase;
-color: var(–accent);
-margin-bottom: 1.2rem;
-opacity: 0;
-animation: fadeUp .6s .1s forwards;
-}
-
-.hero-title {
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: clamp(3.5rem, 7vw, 7rem);
-line-height: .95;
-letter-spacing: 2px;
-opacity: 0;
-animation: fadeUp .7s .2s forwards;
-}
-
-.hero-title .line2 { color: var(–accent); }
-
-.hero-sub {
-font-size: 1rem;
-font-weight: 300;
-line-height: 1.7;
-color: #444;
-margin-top: 1.6rem;
-max-width: 420px;
-opacity: 0;
-animation: fadeUp .7s .35s forwards;
-}
-
-.hero-actions {
-display: flex;
-gap: 1rem;
-margin-top: 2.4rem;
-opacity: 0;
-animation: fadeUp .7s .5s forwards;
-}
-
-.btn-primary {
-background: var(–ink);
-color: var(–paper);
-font-family: ‘DM Mono’, monospace;
-font-size: .8rem;
-letter-spacing: 1px;
-text-transform: uppercase;
-padding: .9rem 2rem;
-border: none;
-cursor: pointer;
-text-decoration: none;
-transition: background .2s;
-display: inline-block;
-}
-
-.btn-primary:hover { background: var(–accent); }
-
-.btn-outline {
-background: transparent;
-color: var(–ink);
-font-family: ‘DM Mono’, monospace;
-font-size: .8rem;
-letter-spacing: 1px;
-text-transform: uppercase;
-padding: .9rem 2rem;
-border: 1.5px solid var(–ink);
-cursor: pointer;
-text-decoration: none;
-transition: all .2s;
-display: inline-block;
-}
-
-.btn-outline:hover { background: var(–ink); color: var(–paper); }
-
-.hero-right {
-display: flex;
-flex-direction: column;
-gap: 1.2rem;
-opacity: 0;
-animation: fadeUp .8s .4s forwards;
-}
-
-.hero-stat-card {
-background: var(–card);
-border: 1px solid var(–border);
-padding: 1.4rem 1.8rem;
-display: flex;
-align-items: center;
-gap: 1.2rem;
-}
-
-.hero-stat-num {
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 3rem;
-color: var(–accent);
-line-height: 1;
-}
-
-.hero-stat-label {
-font-size: .85rem;
-font-weight: 300;
-color: #555;
-line-height: 1.4;
-}
-
-/* ── SECTION SHARED ── */
-section { padding: 6rem 3rem; }
-
-.section-label {
-font-family: ‘DM Mono’, monospace;
-font-size: .7rem;
-letter-spacing: 3px;
-text-transform: uppercase;
-color: var(–accent);
-margin-bottom: .8rem;
-}
-
-.section-title {
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: clamp(2.4rem, 5vw, 4rem);
-letter-spacing: 2px;
-line-height: 1;
-margin-bottom: 1rem;
-}
-
-.section-sub {
-font-size: .95rem;
-font-weight: 300;
-color: #555;
-max-width: 500px;
-line-height: 1.7;
-margin-bottom: 3rem;
-}
-
-hr.divider {
-border: none;
-border-top: 1px solid var(–border);
-margin: 0 3rem;
-}
-
-/* ── SERVICES ── */
-#services { background: var(–ink); color: var(–paper); }
-#services .section-label { color: var(–accent); }
-#services .section-sub { color: #aaa; }
-
-.services-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-gap: 1px;
-background: #222;
-border: 1px solid #222;
-}
-
-.service-card {
-background: var(–ink);
-padding: 2.4rem 2rem;
-transition: background .25s;
-cursor: default;
-}
-
-.service-card:hover { background: #1a1a1a; }
-
-.service-icon {
-font-size: 1.8rem;
-margin-bottom: 1.2rem;
-display: block;
-}
-
-.service-num {
-font-family: ‘DM Mono’, monospace;
-font-size: .65rem;
-letter-spacing: 2px;
-color: var(–accent);
-margin-bottom: .6rem;
-}
-
-.service-name {
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 1.5rem;
-letter-spacing: 1px;
-margin-bottom: .8rem;
-}
-
-.service-desc {
-font-size: .85rem;
-font-weight: 300;
-color: #999;
-line-height: 1.6;
-}
-
-.service-price {
-margin-top: 1.4rem;
-font-family: ‘DM Mono’, monospace;
-font-size: .8rem;
-color: var(–accent);
-letter-spacing: 1px;
-}
-
-/* ── WORKS ── */
-#works { background: var(–paper); }
-
-.works-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-gap: 1.5rem;
-}
-
-.work-card {
-background: var(–card);
-border: 1px solid var(–border);
-overflow: hidden;
-transition: transform .3s, box-shadow .3s;
-}
-
-.work-card:hover {
-transform: translateY(-4px);
-box-shadow: 0 16px 40px rgba(0,0,0,.1);
-}
-
-.work-thumb {
-height: 180px;
-display: flex;
-align-items: center;
-justify-content: center;
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 3rem;
-letter-spacing: 4px;
-position: relative;
-overflow: hidden;
-}
-
-.work-thumb::after {
-content: ‘’;
-position: absolute;
-inset: 0;
-background: rgba(0,0,0,.15);
-}
-
-.work-thumb-label {
-position: relative;
-z-index: 1;
-color: white;
-text-shadow: 0 2px 8px rgba(0,0,0,.4);
-}
-
-.work-body { padding: 1.4rem 1.6rem; }
-
-.work-tags {
-display: flex;
-gap: .5rem;
-flex-wrap: wrap;
-margin-bottom: .8rem;
-}
-
-.tag {
-font-family: ‘DM Mono’, monospace;
-font-size: .65rem;
-letter-spacing: 1px;
-text-transform: uppercase;
-background: #f0ece4;
-padding: .25rem .6rem;
-color: #666;
-}
-
-.work-name {
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 1.4rem;
-letter-spacing: 1px;
-margin-bottom: .4rem;
-}
-
-.work-desc {
-font-size: .82rem;
-font-weight: 300;
-color: #666;
-line-height: 1.6;
-}
-
-/* ── PRICING ── */
-#pricing { background: #f9f6ef; }
-
-.pricing-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-gap: 1.5rem;
-margin-top: 2rem;
-}
-
-.price-card {
-background: var(–card);
-border: 1px solid var(–border);
-padding: 2.4rem 2rem;
-position: relative;
-transition: transform .3s;
-}
-
-.price-card:hover { transform: translateY(-4px); }
-
-.price-card.featured {
-background: var(–ink);
-color: var(–paper);
-border-color: var(–ink);
-}
-
-.price-badge {
-position: absolute;
-top: -1px; right: 1.5rem;
-background: var(–accent);
-color: white;
-font-family: ‘DM Mono’, monospace;
-font-size: .65rem;
-letter-spacing: 1px;
-text-transform: uppercase;
-padding: .3rem .8rem;
-}
-
-.price-tier {
-font-family: ‘DM Mono’, monospace;
-font-size: .7rem;
-letter-spacing: 2px;
-text-transform: uppercase;
-color: var(–accent);
-margin-bottom: .8rem;
-}
-
-.price-amount {
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 3.5rem;
-line-height: 1;
-letter-spacing: 1px;
-}
-
-.price-currency {
-font-family: ‘DM Mono’, monospace;
-font-size: 1rem;
-vertical-align: super;
-}
-
-.price-note {
-font-size: .78rem;
-font-weight: 300;
-color: #888;
-margin-top: .3rem;
-margin-bottom: 1.6rem;
-}
-
-.price-card.featured .price-note { color: #aaa; }
-
-.price-features {
-list-style: none;
-display: flex;
-flex-direction: column;
-gap: .7rem;
-margin-bottom: 2rem;
-}
-
-.price-features li {
-font-size: .85rem;
-font-weight: 300;
-color: #555;
-padding-left: 1.2rem;
-position: relative;
-}
-
-.price-card.featured .price-features li { color: #ccc; }
-
-.price-features li::before {
-content: ‘→’;
-position: absolute;
-left: 0;
-color: var(–accent);
-font-size: .8rem;
-}
-
-/* ── PAYMENT ── */
-#payment {
-background: var(–ink);
-color: var(–paper);
-text-align: center;
-}
-
-#payment .section-sub { color: #aaa; margin: 0 auto 3rem; }
-
-.upi-box {
-display: inline-block;
-background: #111;
-border: 1px solid #333;
-padding: 2.5rem 3.5rem;
-margin-bottom: 2rem;
-}
-
-.upi-label {
-font-family: ‘DM Mono’, monospace;
-font-size: .7rem;
-letter-spacing: 3px;
-text-transform: uppercase;
-color: var(–accent);
-margin-bottom: 1rem;
-}
-
-.upi-id {
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 2.2rem;
-letter-spacing: 3px;
-color: var(–paper);
-margin-bottom: 1.2rem;
-}
-
-.upi-note {
-font-family: ‘DM Mono’, monospace;
-font-size: .72rem;
-color: #777;
-letter-spacing: 1px;
-}
-
-.upi-qr-placeholder {
-width: 140px;
-height: 140px;
-background: white;
-margin: 1.2rem auto;
-display: flex;
-align-items: center;
-justify-content: center;
-color: #888;
-font-size: .72rem;
-font-family: ‘DM Mono’, monospace;
-letter-spacing: 1px;
-text-align: center;
-padding: 1rem;
-}
-
-/* ── CONTACT ── */
-#contact { background: var(–paper); }
-
-.contact-grid {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 4rem;
-align-items: start;
-}
-
-.contact-info { display: flex; flex-direction: column; gap: 1.8rem; }
-
-.contact-item {
-display: flex;
-gap: 1.2rem;
-align-items: flex-start;
-}
-
-.contact-icon {
-width: 40px;
-height: 40px;
-background: var(–ink);
-color: var(–paper);
-display: flex;
-align-items: center;
-justify-content: center;
-font-size: 1rem;
-flex-shrink: 0;
-}
-
-.contact-item-label {
-font-family: ‘DM Mono’, monospace;
-font-size: .65rem;
-letter-spacing: 2px;
-text-transform: uppercase;
-color: var(–accent);
-margin-bottom: .3rem;
-}
-
-.contact-item-val {
-font-size: .9rem;
-font-weight: 300;
-color: #333;
-}
-
-.contact-form { display: flex; flex-direction: column; gap: 1rem; }
-
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-
-.form-group { display: flex; flex-direction: column; gap: .4rem; }
-
-.form-label {
-font-family: ‘DM Mono’, monospace;
-font-size: .65rem;
-letter-spacing: 2px;
-text-transform: uppercase;
-color: #888;
-}
-
-.form-input, .form-textarea {
-background: var(–card);
-border: 1px solid var(–border);
-padding: .8rem 1rem;
-font-family: ‘DM Sans’, sans-serif;
-font-size: .9rem;
-color: var(–ink);
-outline: none;
-transition: border-color .2s;
-resize: none;
-width: 100%;
-}
-
-.form-input:focus, .form-textarea:focus { border-color: var(–ink); }
-
-.form-submit {
-background: var(–ink);
-color: var(–paper);
-font-family: ‘DM Mono’, monospace;
-font-size: .8rem;
-letter-spacing: 1.5px;
-text-transform: uppercase;
-padding: 1rem 2rem;
-border: none;
-cursor: pointer;
-transition: background .2s;
-align-self: flex-start;
-}
-
-.form-submit:hover { background: var(–accent); }
-
-/* ── FOOTER ── */
-footer {
-background: #080808;
-color: #555;
-padding: 2rem 3rem;
-display: flex;
-align-items: center;
-justify-content: space-between;
-font-family: ‘DM Mono’, monospace;
-font-size: .7rem;
-letter-spacing: 1px;
-}
-
-footer .footer-logo {
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 1.3rem;
-color: #333;
-letter-spacing: 2px;
-}
-
-footer .footer-logo span { color: var(–accent); }
-
-/* ── ANIMATIONS ── */
-@keyframes fadeUp {
-from { opacity: 0; transform: translateY(24px); }
-to   { opacity: 1; transform: translateY(0); }
-}
-
-.reveal {
-opacity: 0;
-transform: translateY(30px);
-transition: opacity .7s ease, transform .7s ease;
-}
-
-.reveal.visible {
-opacity: 1;
-transform: translateY(0);
-}
-
-/* ── RESPONSIVE ── */
-@media (max-width: 768px) {
-nav { padding: 1rem 1.5rem; }
-.nav-links { display: none; }
-#hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; }
-.hero-right { display: none; }
-section { padding: 4rem 1.5rem; }
-.contact-grid { grid-template-columns: 1fr; gap: 2rem; }
-.form-row { grid-template-columns: 1fr; }
-footer { flex-direction: column; gap: 1rem; text-align: center; }
-hr.divider { margin: 0 1.5rem; }
-.upi-box { padding: 2rem 1.8rem; }
-}
-</style>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Maverick Solutions — Digital Craftsmanship</title>
+  <!-- Fonts: Clean & Modern -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: radial-gradient(circle at 20% 30%, #0a2f28, #051f1b);
+      background-attachment: fixed;
+      min-height: 100vh;
+      font-family: 'Inter', sans-serif;
+      color: #fef9ef;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    /* subtle noise grain (enhances organic vibe) */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.045'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 10;
+      opacity: 0.4;
+    }
+
+    /* main container: flex column, centered SVG hero */
+    .master {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem 2rem 4rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* header / nav minimal */
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .logo {
+      font-family: 'Space Grotesk', monospace;
+      font-weight: 600;
+      font-size: 1.8rem;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #E6F7F0, #A2D9C2);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .logo span {
+      color: #E6B87E;
+      background: none;
+      -webkit-background-clip: unset;
+      background-clip: unset;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+    }
+
+    .nav-links a {
+      color: #dcfce8;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      letter-spacing: 0.3px;
+      transition: 0.2s ease;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 4px;
+    }
+
+    .nav-links a:hover {
+      color: #ffc285;
+      border-bottom-color: #E6B87E;
+    }
+
+    /* main hero grid */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      margin: 2.5rem 0 4rem;
+    }
+
+    .hero-content {
+      animation: fadeUp 0.7s ease-out forwards;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(230, 184, 126, 0.2);
+      backdrop-filter: blur(4px);
+      padding: 0.35rem 1rem;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #ffe0b5;
+      margin-bottom: 1.5rem;
+      border: 0.5px solid rgba(230, 184, 126, 0.4);
+    }
+
+    .hero-content h1 {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      background: linear-gradient(to right, #FFFFFF, #D4F0E2);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-content p {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: #cbe5db;
+      max-width: 480px;
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+
+    .cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .btn-primary {
+      background: #E6B87E;
+      border: none;
+      padding: 0.8rem 1.9rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border-radius: 40px;
+      color: #0a2f28;
+      cursor: pointer;
+      transition: 0.25s;
+      font-family: 'Inter', sans-serif;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+    }
+
+    .btn-primary:hover {
+      background: #ffcf99;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid #c0dacf;
+      padding: 0.8rem 1.9rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border-radius: 40px;
+      color: #e6f7ef;
+      cursor: pointer;
+      transition: 0.25s;
+      text-decoration: none;
+    }
+
+    .btn-outline:hover {
+      background: rgba(230, 184, 126, 0.15);
+      border-color: #E6B87E;
+      color: #ffffff;
+    }
+
+    /* SVG chameleon container */
+    .chameleon-art {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.4));
+    }
+
+    svg {
+      width: 100%;
+      max-width: 560px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      filter: drop-shadow(0 8px 20px rgba(0,0,0,0.3));
+    }
+
+    /* Stats strip */
+    .stats {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin: 4rem 0 3rem;
+      padding: 2rem 0;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .stat-item {
+      text-align: center;
+      flex: 1;
+    }
+
+    .stat-number {
+      font-size: 2.3rem;
+      font-weight: 700;
+      color: #E6B87E;
+      font-family: 'Space Grotesk', monospace;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 400;
+      color: #bfddcf;
+    }
+
+    /* quick services showcase */
+    .services-preview {
+      margin: 4rem 0;
+    }
+
+    .section-title {
+      font-size: 1.9rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-sub {
+      color: #b7d5c6;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+      max-width: 500px;
+    }
+
+    .service-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: space-between;
+    }
+
+    .service-card {
+      background: rgba(20, 50, 44, 0.6);
+      backdrop-filter: blur(8px);
+      border-radius: 28px;
+      padding: 1.5rem 1.2rem;
+      flex: 1;
+      min-width: 170px;
+      transition: all 0.2s;
+      border: 1px solid rgba(230, 184, 126, 0.2);
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      background: rgba(30, 65, 56, 0.7);
+      border-color: #E6B87E;
+    }
+
+    .service-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .service-card h4 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .service-card p {
+      font-size: 0.8rem;
+      color: #cbe3d8;
+    }
+
+    /* contact CTA */
+    .contact-cta {
+      background: linear-gradient(105deg, #0F3A32 0%, #07261f 100%);
+      border-radius: 2rem;
+      padding: 2.5rem;
+      margin: 3rem 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      border: 1px solid rgba(230,184,126,0.25);
+    }
+
+    .contact-cta h3 {
+      font-size: 1.6rem;
+      font-weight: 600;
+    }
+
+    /* footer */
+    footer {
+      margin-top: 3rem;
+      text-align: center;
+      font-size: 0.75rem;
+      color: #86AFA0;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* reveal animation for elements */
+    .reveal {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* responsive */
+    @media (max-width: 860px) {
+      .master {
+        padding: 1.5rem;
+      }
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+      }
+      .hero-content p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .cta-group {
+        justify-content: center;
+      }
+      .stats {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.8rem;
+      }
+      .contact-cta {
+        flex-direction: column;
+        text-align: center;
+      }
+      footer {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<!-- NAV -->
-
-<nav>
-  <a href="#hero" class="nav-logo">Maverick<span>.</span></a>
-  <ul class="nav-links">
-    <li><a href="#services">Services</a></li>
-    <li><a href="#works">Works</a></li>
-    <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <a href="#payment" class="nav-cta">Pay Now</a>
-</nav>
-
-<!-- HERO -->
-
-<section id="hero">
-  <div class="hero-left">
-    <p class="hero-tag">Web · Design · Digital Solutions</p>
-    <h1 class="hero-title">
-      We Build<br>
-      <span class="line2">Digital That</span><br>
-      Works.
-    </h1>
-    <p class="hero-sub">From business websites to e-commerce catalogs — Maverick Solutions delivers clean, fast, and professional digital presence for growing businesses.</p>
-    <div class="hero-actions">
-      <a href="#works" class="btn-primary">View Our Work</a>
-      <a href="#contact" class="btn-outline">Get a Quote</a>
+<div class="master">
+  <!-- minimal navigation -->
+  <div class="nav">
+    <div class="logo">MAVERICK<span>.</span>SOLUTIONS</div>
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
     </div>
   </div>
-  <div class="hero-right">
-    <div class="hero-stat-card">
-      <div class="hero-stat-num">20+</div>
-      <div class="hero-stat-label">Projects delivered<br>across industries</div>
-    </div>
-    <div class="hero-stat-card">
-      <div class="hero-stat-num">48H</div>
-      <div class="hero-stat-label">Average turnaround<br>for basic sites</div>
-    </div>
-    <div class="hero-stat-card">
-      <div class="hero-stat-num">100%</div>
-      <div class="hero-stat-label">Client satisfaction<br>rate maintained</div>
-    </div>
-  </div>
-  <div class="hero-bg-text">MAVERICK</div>
-</section>
 
-<hr class="divider">
-
-<!-- SERVICES -->
-
-<section id="services">
-  <p class="section-label">What We Do</p>
-  <h2 class="section-title">Our Services</h2>
-  <p class="section-sub">End-to-end digital solutions — designed, built and delivered with precision.</p>
-
-  <div class="services-grid reveal">
-    <div class="service-card">
-      <span class="service-icon">🌐</span>
-      <div class="service-num">01</div>
-      <div class="service-name">Business Websites</div>
-      <div class="service-desc">Clean, mobile-first websites for shops, businesses, and professionals. Includes contact forms and UPI payment integration.</div>
-
-```
-</div>
-<div class="service-card">
-  <span class="service-icon">🗂️</span>
-  <div class="service-num">02</div>
-  <div class="service-name">Product Catalogs</div>
-  <div class="service-desc">Full digital catalogs for tiles, beeding, hardware, granite, real estate & more. Each listing includes product photo, name, dimensions/specs, finish type, price or "price on enquiry", and a direct WhatsApp/call enquiry button. Supports category filters (e.g. Floor Tiles, Wall Tiles, Beeding, Borders), search, and bulk listing uploads. Ideal for showrooms, wholesalers, and manufacturers who want a professional online presence without a full e-commerce setup.</div>
-
-</div>
-<div class="service-card">
-  <span class="service-icon">🛒</span>
-  <div class="service-num">03</div>
-  <div class="service-name">E-commerce Stores</div>
-  <div class="service-desc">Full online stores with UPI, card, and COD payments. Product management, cart, and order tracking built in.</div>
-
-</div>
-<div class="service-card">
-  <span class="service-icon">📱</span>
-  <div class="service-num">04</div>
-  <div class="service-name">Landing Pages</div>
-  <div class="service-desc">High-converting single-page sites for launches, events, services, and campaigns. Fast and targeted.</div>
-
-</div>
-<div class="service-card">
-  <span class="service-icon">🔧</span>
-  <div class="service-num">05</div>
-  <div class="service-name">Maintenance & Support</div>
-  <div class="service-desc">Monthly updates, content edits, bug fixes, and hosting support. Keep your site running smoothly.</div>
-
-</div>
-<div class="service-card">
-  <span class="service-icon">🎨</span>
-  <div class="service-num">06</div>
-  <div class="service-name">Logo & Branding</div>
-  <div class="service-desc">Logo design, brand colors, business card, and letterhead. Professional identity for your business.</div>
-
-</div>
-```
-
-  </div>
-</section>
-
-<hr class="divider" style="border-color:#1a1a1a;">
-
-<!-- WORKS -->
-
-<section id="works">
-  <p class="section-label">Portfolio</p>
-  <h2 class="section-title">Our Works</h2>
-  <p class="section-sub">A selection of projects delivered for real clients across different industries.</p>
-
-  <div class="works-grid reveal">
-    <div class="work-card">
-      <div class="work-thumb" style="background: linear-gradient(135deg, #c8763a, #8b4513);">
-        <span class="work-thumb-label">TILES CO.</span>
-      </div>
-      <div class="work-body">
-        <div class="work-tags">
-          <span class="tag">Catalog</span>
-          <span class="tag">Listings</span>
-          <span class="tag">UPI</span>
-        </div>
-        <div class="work-name">Tiles & Beeding Business</div>
-        <div class="work-desc">Full product catalog with tile listings, size specs, price on enquiry, and UPI payment link integration. Mobile responsive.</div>
+  <!-- Hero section with custom SVG gecko + content -->
+  <div class="hero-grid">
+    <div class="hero-content">
+      <div class="hero-badge">✦ digital artisans ✦</div>
+      <h1>Crafting digital <br>identities with soul</h1>
+      <p>Websites, catalogs, and brand narratives that breathe life into your business. Modern, fast, and unforgettable.</p>
+      <div class="cta-group">
+        <a href="#contact" class="btn-primary">Start a project</a>
+        <a href="#services" class="btn-outline">Explore services</a>
       </div>
     </div>
-
-```
-<div class="work-card">
-  <div class="work-thumb" style="background: linear-gradient(135deg, #2c4a6e, #1a3050);">
-    <span class="work-thumb-label">FREIGHT</span>
-  </div>
-  <div class="work-body">
-    <div class="work-tags">
-      <span class="tag">Logistics</span>
-      <span class="tag">Web App</span>
-      <span class="tag">React</span>
-    </div>
-    <div class="work-name">BharatYaan — Freight Platform</div>
-    <div class="work-desc">Indian freight logistics platform with Firebase authentication, live route tracking, and shipper/transporter dashboards.</div>
-  </div>
-</div>
-
-<div class="work-card">
-  <div class="work-thumb" style="background: linear-gradient(135deg, #1a7a4a, #0d4d2e);">
-    <span class="work-thumb-label">GASPAY</span>
-  </div>
-  <div class="work-body">
-    <div class="work-tags">
-      <span class="tag">Fintech</span>
-      <span class="tag">RFID</span>
-      <span class="tag">UPI</span>
-    </div>
-    <div class="work-name">GasPay — Fuel Wallet</div>
-    <div class="work-desc">RFID/NFC-based fuel payment platform — FASTag for fuel stations. React + Vite frontend with Razorpay integration.</div>
-  </div>
-</div>
-
-<div class="work-card">
-  <div class="work-thumb" style="background: linear-gradient(135deg, #5c3d8f, #3a2060);">
-    <span class="work-thumb-label">PORTFOLIO</span>
-  </div>
-  <div class="work-body">
-    <div class="work-tags">
-      <span class="tag">Portfolio</span>
-      <span class="tag">Personal</span>
-    </div>
-    <div class="work-name">Developer Portfolio — syedkhush.com</div>
-    <div class="work-desc">Personal portfolio for a developer/engineer showcasing projects, skills, and contact information.</div>
-  </div>
-</div>
-
-<div class="work-card">
-  <div class="work-thumb" style="background: linear-gradient(135deg, #7a4a1a, #4d2d0a);">
-    <span class="work-thumb-label">QUARRY</span>
-  </div>
-  <div class="work-body">
-    <div class="work-tags">
-      <span class="tag">Industrial</span>
-      <span class="tag">AI/ML</span>
-      <span class="tag">Safety</span>
-    </div>
-    <div class="work-name">PPE Detection — Quarry Safety AI</div>
-    <div class="work-desc">YOLOv8-based PPE detection system with 95.1% mAP50 accuracy, built for industrial safety monitoring.</div>
-  </div>
-</div>
-
-<div class="work-card">
-  <div class="work-thumb" style="background: linear-gradient(135deg, #b8860b, #7a5900);">
-    <span class="work-thumb-label">WATCHES</span>
-  </div>
-  <div class="work-body">
-    <div class="work-tags">
-      <span class="tag">E-commerce</span>
-      <span class="tag">Branding</span>
-      <span class="tag">Luxury</span>
-    </div>
-    <div class="work-name">Tickscope — Watch Microbrand</div>
-    <div class="work-desc">Brand identity and e-commerce setup for a luxury watch microbrand — bronze case, copper dial, natural metal patina concept.</div>
-  </div>
-</div>
-```
-
-  </div>
-</section>
-
-<hr class="divider">
-
-<!-- PRICING HIDDEN -->
-
-<section id="pricing" style="display:none;">
-  <p class="section-label">Investment</p>
-  <h2 class="section-title">Simple Pricing</h2>
-  <p class="section-sub">Transparent rates. No hidden charges. 50% advance, 50% on delivery.</p>
-
-  <div class="pricing-grid reveal">
-    <div class="price-card">
-      <div class="price-tier">Starter</div>
-      <div class="price-amount"><span class="price-currency">₹</span>5,000</div>
-      <div class="price-note">Landing page / single section</div>
-      <ul class="price-features">
-        <li>1-page responsive website</li>
-        <li>Contact form</li>
-        <li>UPI payment link</li>
-        <li>Mobile optimised</li>
-        <li>Delivered in 48 hours</li>
-      </ul>
-      <a href="#contact" class="btn-outline">Get Started</a>
-    </div>
-
-```
-<div class="price-card featured">
-  <div class="price-badge">Most Popular</div>
-  <div class="price-tier">Standard</div>
-  <div class="price-amount"><span class="price-currency">₹</span>10,000</div>
-  <div class="price-note">Full business website</div>
-  <ul class="price-features">
-    <li>Multi-section website</li>
-    <li>Product / service catalog</li>
-    <li>Listings with images & specs</li>
-    <li>Category filters + search</li>
-    <li>Contact + enquiry form</li>
-    <li>UPI payment integration</li>
-    <li>WhatsApp chat button</li>
-    <li>Delivered in 4–5 days</li>
-  </ul>
-  <a href="#contact" class="btn-primary">Get Started</a>
-</div>
-
-<div class="price-card">
-  <div class="price-tier">Premium</div>
-  <div class="price-amount"><span class="price-currency">₹</span>20,000+</div>
-  <div class="price-note">E-commerce / web app</div>
-  <ul class="price-features">
-    <li>Full e-commerce store</li>
-    <li>Admin panel / CMS</li>
-    <li>Razorpay / UPI payments</li>
-    <li>Order management</li>
-    <li>Custom features</li>
-    <li>1 month free support</li>
-  </ul>
-  <a href="#contact" class="btn-outline">Get Started</a>
-</div>
-```
-
-  </div>
-
-  <!-- ADD-ONS -->
-
-  <div style="margin-top:3rem;">
-    <p class="section-label" style="margin-bottom:1.2rem;">Add-Ons</p>
-    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1rem;">
-
-```
-  <div class="price-card" style="border-left:3px solid var(--accent);">
-    <div class="price-tier">Add-On</div>
-    <div class="price-amount"><span class="price-currency">₹</span>2,000</div>
-    <div class="price-note">Backend Support</div>
-    <ul class="price-features">
-      <li>Form data saved to database</li>
-      <li>Admin panel to view enquiries</li>
-      <li>Email/WhatsApp notifications on new leads</li>
-      <li>Secure Firebase / Supabase backend</li>
-    </ul>
-    <a href="#contact" class="btn-outline">Add to Project</a>
-  </div>
-
-  <div class="price-card" style="border-left:3px solid var(--accent);">
-    <div class="price-tier">Add-On</div>
-    <div class="price-amount"><span class="price-currency">₹</span>2,000</div>
-    <div class="price-note">AI Chat Assistant</div>
-    <ul class="price-features">
-      <li>AI chatbot on your website</li>
-      <li>Answers product & pricing queries 24/7</li>
-      <li>Trained on your catalog & services</li>
-      <li>Leads collected automatically</li>
-    </ul>
-    <a href="#contact" class="btn-outline">Add to Project</a>
-  </div>
-
-</div>
-```
-
-  </div>
-</section>
-
-<!-- GET IN TOUCH CTA -->
-
-<section style="background:#f9f6ef; text-align:center; padding:6rem 3rem;">
-  <p class="section-label">Work With Us</p>
-  <h2 class="section-title">Let's Build Something</h2>
-  <p class="section-sub" style="margin: 0 auto 2.5rem;">Every project is different. Tell us what you need and we'll send you a custom quote within 24 hours — no commitment required.</p>
-  <a href="#contact" class="btn-primary" style="font-size:.9rem; padding:1.1rem 3rem;">Get In Touch →</a>
-</section>
-
-<hr class="divider">
-
-<!-- PAYMENT -->
-
-<section id="payment">
-  <p class="section-label">Pay Securely</p>
-  <h2 class="section-title">UPI Payment</h2>
-  <p class="section-sub">Pay your advance or full amount directly via UPI. Instant confirmation.</p>
-
-  <div class="upi-box reveal">
-    <div class="upi-label">UPI ID</div>
-    <div class="upi-id">maverick@upi</div>
-    <div class="upi-qr-placeholder">[ QR Code<br>Goes Here ]</div>
-    <div class="upi-note">Scan QR or use UPI ID to pay<br>Works on PhonePe · GPay · Paytm · BHIM</div>
-  </div>
-
-  <p style="font-family:'DM Mono',monospace; font-size:.72rem; color:#555; letter-spacing:1px; margin-top:1rem;">
-    After payment, WhatsApp your screenshot to confirm your booking.
-  </p>
-</section>
-
-<hr class="divider" style="border-color:#1a1a1a;">
-
-<!-- CONTACT -->
-
-<section id="contact">
-  <p class="section-label">Let's Talk</p>
-  <h2 class="section-title">Get In Touch</h2>
-
-  <div class="contact-grid reveal">
-    <div class="contact-info">
-      <p style="font-size:.95rem; font-weight:300; color:#555; line-height:1.7; max-width:380px;">
-        Have a project in mind? Tell us what you need and we'll get back to you within 24 hours with a quote and timeline.
-      </p>
-
-```
-  <div class="contact-item">
-    <div class="contact-icon">📞</div>
-    <div>
-      <div class="contact-item-label">Phone / WhatsApp</div>
-      <div class="contact-item-val">+91 63002 41881</div>
-    </div>
-  </div>
-
-  <div class="contact-item">
-    <div class="contact-icon">✉️</div>
-    <div>
-      <div class="contact-item-label">Email</div>
-      <div class="contact-item-val">hello@mavericksolutions.in</div>
-    </div>
-  </div>
-
-  <div class="contact-item">
-    <div class="contact-icon">📍</div>
-    <div>
-      <div class="contact-item-label">Location</div>
-      <div class="contact-item-val">Chittoor, Andhra Pradesh</div>
-    </div>
-  </div>
-</div>
-
-<div class="contact-form">
-  <div class="form-row">
-    <div class="form-group">
-      <label class="form-label">Your Name</label>
-      <input class="form-input" type="text" placeholder="Ravi Kumar" />
-    </div>
-    <div class="form-group">
-      <label class="form-label">Phone / WhatsApp</label>
-      <input class="form-input" type="tel" placeholder="+91 98765 43210" />
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="form-label">What do you need?</label>
-    <input class="form-input" type="text" placeholder="e.g. Tiles business website with catalog" />
-  </div>
-  <div class="form-group">
-    <label class="form-label">Budget (optional)</label>
-    <input class="form-input" type="text" placeholder="e.g. ₹10,000 – ₹15,000" />
-  </div>
-  <div class="form-group">
-    <label class="form-label">Additional Details</label>
-    <textarea class="form-textarea" rows="4" placeholder="Tell us more about your project..."></textarea>
-  </div>
-  <button class="form-submit" onclick="alert('Thanks! We\'ll contact you within 24 hours.')">Send Enquiry →</button>
-</div>
-```
-
-  </div>
-</section>
-
-<!-- FOOTER -->
-
-<footer>
-  <div class="footer-logo">Maverick<span>.</span></div>
-  <div>© 2025 Maverick Solutions. All rights reserved.</div>
-  <div>Chittoor, Andhra Pradesh</div>
-</footer>
-
-<script>
-  // Scroll reveal
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-</script>
-
-</body>
-</html>
+    <div class="chameleon-art">
+      <!-- Enhanced Gecko SVG with all animations, guaranteed to work -->
+      <svg viewBox="-20 -15 1040 631.6" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <linearGradient id="linear-gradient" x1="1057.3" x2="1103.8" y1="672.1" y2="672.1" gradientTransform="translate(-124 -300)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#005a37" /><stop offset=".5" stop-color="#006c44" /><stop offset="1" stop-color="#008658" />
+          </linearGradient>
+          <linearGradient id="linear-gradient-2" x1="1098.1" x2="1008.8" y1="700.5" y2="700.5" gradientTransform="translate(-124 -300)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#008658" /><stop offset=".3" stop-color="#068c5c" /><stop offset=".6" stop-color="#1a9d67" /><stop offset="1" stop-color="#35b677" />
+          </linearGradient>
+          <linearGradient id="linear-gradient-3" x1="-59.6" x2="993" y1="175" y2="175" gradientTransform="rotate(-7 2626 -317)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#fff" stop-opacity="0" /><stop offset=".7" stop-color="#fff" stop-opacity=".2" /><stop offset="1" stop-color="#fff" stop-opacity=".3" />
+          </linearGradient>
+          <linearGradient id="linear-gradient-4" x1="13.9" x2="61.1" y1="-1009.7" y2="-1091.5" gradientTransform="rotate(-20 4226 -971)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#fff" stop-opacity="0" /><stop offset="1" stop-color="#a87c4f" />
+          </linearGradient>
+          <linearGradient id="linear-gradient-5" x1="345.3" x2="524.2" y1="-879.3" y2="-879.3" gradientTransform="rotate(-18 3800 -950)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#fff" stop-opacity="0" /><stop offset=".1" stop-color="#fcfbfa" stop-opacity="0" /><stop offset=".3" stop-color="#f6f2ee" stop-opacity=".1" /><stop offset=".4" stop-color="#ece3d9" stop-opacity=".2" /><stop offset=".5" stop-color="#decdbc" stop-opacity=".4" /><stop offset=".6" stop-color="#cbb197" stop-opacity=".6" /><stop offset=".8" stop-color="#b5906a" stop-opacity=".8" /><stop offset=".8" stop-color="#a87c4f" />
+          </linearGradient>
+          <linearGradient id="linear-gradient-6" x1="444.8" x2="961.5" y1="618.5" y2="618.5" gradientTransform="translate(-124 -300)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#1b6936" stop-opacity="0" /><stop offset=".5" stop-color="#1a6835" stop-opacity="0" /><stop offset=".8" stop-color="#1a6835" stop-opacity=".1" /><stop offset=".9" stop-color="#196835" stop-opacity=".2" /><stop offset="1" stop-color="#196835" stop-opacity=".3" />
+          </linearGradient>
+          <linearGradient id="linear-gradient-7" x1="-251.2" x2="-.9" y1="676.5" y2="676.5" gradientTransform="rotate(31 214 1915)scale(-1 1)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#fff" stop-opacity="0" /><stop offset=".2" stop-color="#c0d6c8" stop-opacity=".1" /><stop offset=".7" stop-color="#45855c" stop-opacity=".3" /><stop offset="1" stop-color="#196835" stop-opacity=".3" />
+          </linearGradient>
+          <linearGradient id="linear-gradient-8" x1="-84.6" x2="-84.6" y1="558.3" y2="631.6" gradientTransform="translate(-124 -300)" href="#linear-gradient-7" />
+          <linearGradient id="linear-gradient-9" x1="170.9" x2="170" y1="565.5" y2="610.5" gradientTransform="rotate(31 214 1915)scale(-1 1)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#fff" stop-opacity="0" /><stop offset=".6" stop-color="#639976" stop-opacity=".3" /><stop offset="1" stop-color="#196835" stop-opacity=".5" />
+          </linearGradient>
+          <linearGradient id="linear-gradient-10" x1="-78.6" x2="-78.6" y1="477.7" y2="615.1" gradientTransform="translate(-124 -300)" href="#linear-gradient-9" />
+          <linearGradient id="linear-gradient-11" x1="10137.6" x2="10196.4" y1="-1581.3" y2="-1588.7" gradientTransform="rotate(164 5358 198)scale(1 -1)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#fff" stop-opacity="0" /><stop offset=".2" stop-color="#f5f8f6" stop-opacity="0" /><stop offset=".4" stop-color="#d8e6dd" stop-opacity=".2" /><stop offset=".6" stop-color="#a9c7b4" stop-opacity=".4" /><stop offset=".8" stop-color="#689b7a" stop-opacity=".7" /><stop offset="1" stop-color="#196835" />
+          </linearGradient>
+          <linearGradient id="linear-gradient-12" x1="382.7" x2="459.1" y1="806.5" y2="806.5" gradientTransform="translate(-124 -300)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#008658" /><stop offset=".5" stop-color="#006c44" /><stop offset="1" stop-color="#005a37" />
+          </linearGradient>
+          <linearGradient id="linear-gradient-13" x1="264.1" x2="439.4" y1="775.9" y2="775.9" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#008658" /><stop offset=".6" stop-color="#22a56c" /><stop offset="1" stop-color="#35b677" />
+          </linearGradient>
+          <linearGradient id="linear-gradient-14" x1="457.1" x2="417.6" y1="818.4" y2="818.4" gradientTransform="translate(-124 -300)" href="#linear-gradient-13" />
+          <linearGradient id="linear-gradient-16" x1="518" x2="518" y1="492.3" y2="672.3" gradientTransform="translate(-124 -300)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#1b6936" stop-opacity="0" /><stop offset=".4" stop-color="#1a6835" stop-opacity="0" /><stop offset=".7" stop-color="#1a6835" stop-opacity=".1" /><stop offset="1" stop-color="#196835" stop-opacity=".3" />
+          </linearGradient>
+          <linearGradient id="linear-gradient-17" x1="-8.1" x2="-8.1" y1="134.1" y2="400" gradientTransform="rotate(-179 118 -69)scale(1 -1)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#0d6b37" stop-opacity="0" /><stop offset=".5" stop-color="#0c6a36" stop-opacity="0" /><stop offset=".7" stop-color="#0c6a36" stop-opacity=".1" /><stop offset=".8" stop-color="#0c6a36" stop-opacity=".2" /><stop offset=".9" stop-color="#0b6a36" stop-opacity=".3" /><stop offset="1" stop-color="#0b6a36" stop-opacity=".5" />
+          </linearGradient>
+          <linearGradient id="linear-gradient-18" x1="2161.3" x2="2161.3" y1="-3069.5" y2="-3054.5" gradientTransform="matrix(1 .02 .02 -1 -1793 -2678)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#fff" stop-opacity="0" /><stop offset=".1" stop-color="#fff" stop-opacity=".1" /><stop offset=".3" stop-color="#fff" stop-opacity=".4" /><stop offset=".5" stop-color="#fff" stop-opacity=".6" /><stop offset=".6" stop-color="#fff" stop-opacity=".8" /><stop offset=".8" stop-color="#fff" stop-opacity=".9" /><stop offset=".9" stop-color="#fff" stop-opacity="1" /><stop offset="1" stop-color="#fff" />
+          </linearGradient>
+          <linearGradient id="linear-gradient-19" x1="1.7" x2="52.5" y1="285.4" y2="373.4" gradientTransform="rotate(-179 118 -69)scale(1 -1)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#fff" stop-opacity="0" /><stop offset="1" stop-color="#196835" stop-opacity=".5" />
+          </linearGradient>
+          <linearGradient id="linearGradient115" x1="-251.2" x2="-.9" y1="676.5" y2="676.5" gradientTransform="rotate(31 692 1543)scale(-1 1)" gradientUnits="userSpaceOnUse" href="#linear-gradient-7" />
+          <linearGradient id="linearGradient116" x1="170.9" x2="170" y1="565.5" y2="610.5" gradientTransform="rotate(31 692 1543)scale(-1 1)" gradientUnits="userSpaceOnUse" href="#linear-gradient-9" />
+          <linearGradient id="linearGradient117" x1="264.1" x2="439.4" y1="775.9" y2="775.9" gradientTransform="translate(-124 -300)" gradientUnits="userSpaceOnUse" href="#linear-gradient-13" />
+          <linearGradient id="linearGradient119" x1="2161.3" x2="2161.3" y1="-3069.5" y2="-3054.5" gradientTransform="matrix(1 .02 .02 -1 -1919 -2990)" gradientUnits="userSpaceOnUse" href="#linear-gradient-18" />
+          <radialGradient id="radial-gradient" cx="56" cy="427.5" fx="56" fy="427.5" gradientTransform="rotate(31 214 1915)scale(-1 1)" r="209" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#a7d8bb" /><stop offset="1" stop-color="#fff" stop-opacity="0" />
+          </radialGradient>
+          <radialGradient id="radial-gradient-2" cx="-75.5" cy="583.8" fx="-75.5" fy="583.8" gradientTransform="translate(-124 -300)" r="62.8" href="#radial-gradient" />
+          <radialGradient id="radial-gradient-3" cx="-.4" cy="228.8" fx="-.4" fy="228.8" gradientTransform="rotate(-179 118 -69)scale(1 -1)" r="99.8" href="#radial-gradient" />
+          <radialGradient id="radial-gradient-5" cx="21.5" cy="345.7" fx="21.5" fy="345.7" gradientTransform="rotate(-179 118 -69)scale(1 -1)" r="54.8" href="#radial-gradient" />
+          <radialGradient id="radialGradient115" cx="56" cy="427.5" fx="56" fy="427.5" gradientTransform="rotate(31 692 1543)scale(-1 1)" r="209" href="#radial-gradient" gradientUnits="userSpaceOnUse" />
+          <clipPath id="clipPath120"><circle cx="181.7" cy="442" r="50" /></clipPath>
+          <style>
+            .cls-5{fill:#8e755a}.cls-6{fill:url(#radial-gradient-4)}.cls-20{mix-blend-mode:multiply}.cls-22{isolation:isolate}.cls-23{fill:#008657}.cls-24{fill:#34b677}.cls-29{fill:#a47c53}
+          </style>
+        </defs>
+        <g id="climbing-geeko">
+          <path d="M0 347s190-33 239-24c48 8 182 14 266 50 83 36 334 92 354 91 33-1 84 7 96 10 20 7 121 13 121 13s2 56 0 57c-4 6-124-21-124-21l-127-14S325 355 209 361c-115 5-196 19-203 4l-6-16z" id="path80" style="isolation:isolate" class="cls-29" />
+          <path d="M240 336c49 8 183 14 266 50 84 36 334 92 354 91 34-1 84 7 96 11 7 2 121 17 121 17l-1-18s-108-7-121-13c-12-3-63-11-96-10-20 1-271-55-354-91-84-36-218-42-266-50-49-9-239 24-239 24v2l4 10c24-4 191-31 236-23" id="path81" fill="url(#linear-gradient-3)" />
+          <path d="m5 361 1 4c7 15 88 1 203-4 78-4 201 32 276 52l21-39-1-1-18-7-30 6s-73 5-73-6c1-8 8-18 12-23l-24-4-51 19-60-11 11-20-48-6-23 12C177 345 5 361 5 361" id="path82" style="mix-blend-mode:multiply;opacity:.5;isolation:isolate" fill="url(#linear-gradient-4)" />
+          <path d="M945 503c-12-4-62-11-96-10-20 0-270-56-354-92-83-36-217-42-266-50-37-6-157 11-211 20 27 4 98-6 191-10 116-6 616 148 616 148s73 11 108 12c11 0 13 1 19 2 0 0 57 14 57 12 1 0 61 13 67 9l1-16c-9-4-47-6-48-6-14-6-55-12-55-12z" id="path84" class="cls-5" />
+          <path d="M601 447q7 1 40 9l136 36 16-39c-83-18-118-28-176-43z" id="path85" style="mix-blend-mode:multiply;isolation:isolate" fill="url(#linear-gradient-5)" />
+          <path d="M664 462c-2-10 3-22 5-32l2-6c-44-11-88-23-123-35l2 4q8 19 3 38z" id="path96" style="isolation:isolate" class="cls-29" />
+          <path d="m669 430 2-6c-44-11-88-23-123-35l2 4 4 11 113 32z" id="path97" style="isolation:isolate" fill="#b38f6d" />
+          <path d="m664 453-110-30-1 8 111 31z" id="path98" style="isolation:isolate" class="cls-5" />
+          <g id="gc-leaves-2"><path d="m969 477 4-6q5-4 5-10l-5 4-11 10-3 3z" id="path74" style="isolation:isolate" class="cls-29" /><path d="M951 283c6 11 18 18 27 27q19 18 24 41 8 33-2 63l-5 16q-3 9-10 16-5 5-6 12l-3 6 2-11q0-4-2-7a168 168 0 0 1-42-80q-2-12 3-24l11-41 1-14v-4z" id="path75" style="isolation:isolate" class="cls-23" /><path d="M976 463v-2q3-11-6-20l-18-22q-20-29-18-65l5-25 8-28q3-9 2-20l3 4q9 27 15 55l11 66q4 23 1 45v7l-1 6z" id="path76" style="isolation:isolate" fill="url(#linear-gradient)" /><path d="m975 466-5-6q-3-4-7-5l-39-11q-16-11-28-27-11-17-11-37l1-37q0-6 5-4l23 1q22 6 37 25 16 18 18 43l2 42q0 4 2 8l4 5-1 3z" id="path77" style="isolation:isolate" class="cls-23" /><path d="M974 462q-6-4-15-5-24-4-45-19a68 68 0 0 1-29-56l2-37v-6q4 2 5 6l34 53q22 32 46 61z" id="path78" style="isolation:isolate" fill="url(#linear-gradient-2)" /></g>
+          <path d="M360 290c-10 0-22 7-30 13l-11 11-17 19q-11 6-21 1c-9-3-32-1-39-7-7-5 20-20 23-22s30-21 36-30l4-7 1-7c3-11 11-33 33-45 30-17 65 25 64 51-1 24-25 23-30 23h-13" id="path79" style="isolation:isolate" class="cls-23" />
+          <path d="m331 206-5-3c-34-26-23-91 13-121 20-18 85-13 91-14q18 1 35 3a424 424 0 0 1 137 38c29 14 104 55 100 120-2 51-57 82-90 96q-14 3-26 9c-56 4-86-4-113-17l-27-16-18-11-8-5q-48-30-68-51z" id="path83" style="isolation:isolate" class="cls-24" />
+          <path d="M392 275c22 4 28 10 51 24l35 20c5 4-9 32-33 25-10-3-11 3-15 6-1 0 10 2 16 5 11 4 24 8 24 17 1 12-10 24-10 26 7 9 32-5 33-5l36-25 39-25q42-24 89-24c39 2 94 25 116 79 22 58-23 113-77 120q-34 4-62-16c-35-23-45-66-19-95q14-16 35-16 14 0 26 8 15 7 19 22c3 12-3 25-14 30q-10 2-16 9-2 8 3 13 10 8
