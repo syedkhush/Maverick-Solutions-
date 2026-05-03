@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Maverick Solutions — Digital Craftsmanship</title>
-  <!-- Fonts: Clean & Modern -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Maverick Solutions • digital ecosystem</title>
+  <!-- modern fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -14,16 +14,16 @@
     }
 
     body {
-      background: radial-gradient(circle at 20% 30%, #0a2f28, #051f1b);
+      background: radial-gradient(circle at 10% 25%, #0a2f28, #041c17);
       background-attachment: fixed;
       min-height: 100vh;
       font-family: 'Inter', sans-serif;
-      color: #fef9ef;
+      color: #f3f9f3;
       scroll-behavior: smooth;
       overflow-x: hidden;
     }
 
-    /* subtle noise grain (enhances organic vibe) */
+    /* subtle noise texture (organic refinement) */
     body::before {
       content: "";
       position: fixed;
@@ -31,302 +31,276 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.045'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.045'/%3E%3C/svg%3E");
       pointer-events: none;
-      z-index: 10;
+      z-index: 999;
       opacity: 0.4;
     }
 
-    /* main container: flex column, centered SVG hero */
-    .master {
+    .master-container {
       max-width: 1400px;
       margin: 0 auto;
-      padding: 2rem 2rem 4rem;
+      padding: 1.8rem 2.5rem 4rem;
       position: relative;
       z-index: 2;
     }
 
-    /* header / nav minimal */
-    .nav {
+    /* Navigation */
+    .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
       gap: 1rem;
-      margin-bottom: 1.5rem;
       padding-bottom: 1rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      margin-bottom: 1rem;
+      border-bottom: 1px solid rgba(210, 230, 210, 0.15);
     }
 
-    .logo {
+    .logo-brand {
       font-family: 'Space Grotesk', monospace;
-      font-weight: 600;
-      font-size: 1.8rem;
+      font-weight: 700;
+      font-size: 1.9rem;
       letter-spacing: -0.02em;
-      background: linear-gradient(135deg, #E6F7F0, #A2D9C2);
+      background: linear-gradient(130deg, #FFFFFF, #c0e0cf);
       background-clip: text;
       -webkit-background-clip: text;
       color: transparent;
     }
-
-    .logo span {
-      color: #E6B87E;
+    .logo-brand span {
       background: none;
+      color: #E6B87E;
       -webkit-background-clip: unset;
-      background-clip: unset;
     }
 
     .nav-links {
       display: flex;
-      gap: 2.2rem;
+      gap: 2rem;
     }
-
     .nav-links a {
-      color: #dcfce8;
+      color: #e0f2e8;
       text-decoration: none;
       font-weight: 500;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       letter-spacing: 0.3px;
-      transition: 0.2s ease;
+      transition: 0.2s;
       border-bottom: 1px solid transparent;
-      padding-bottom: 4px;
+      padding-bottom: 3px;
     }
-
     .nav-links a:hover {
-      color: #ffc285;
+      color: #E6B87E;
       border-bottom-color: #E6B87E;
     }
 
-    /* main hero grid */
+    /* hero grid */
     .hero-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 3rem;
       align-items: center;
-      margin: 2.5rem 0 4rem;
+      margin: 3rem 0 4rem;
     }
 
-    .hero-content {
+    .hero-left {
       animation: fadeUp 0.7s ease-out forwards;
     }
-
-    .hero-badge {
+    .badge {
       display: inline-block;
-      background: rgba(230, 184, 126, 0.2);
-      backdrop-filter: blur(4px);
-      padding: 0.35rem 1rem;
+      background: rgba(230, 184, 126, 0.18);
+      backdrop-filter: blur(5px);
+      padding: 0.3rem 1rem;
       border-radius: 40px;
       font-size: 0.7rem;
       font-weight: 600;
+      letter-spacing: 1.6px;
       text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: #ffe0b5;
+      color: #FFE2B5;
+      border: 0.5px solid rgba(230, 184, 126, 0.5);
       margin-bottom: 1.5rem;
-      border: 0.5px solid rgba(230, 184, 126, 0.4);
     }
-
-    .hero-content h1 {
+    .hero-left h1 {
       font-size: clamp(2.8rem, 6vw, 5rem);
-      font-weight: 700;
-      line-height: 1.1;
+      font-weight: 800;
+      line-height: 1.08;
       letter-spacing: -0.02em;
-      background: linear-gradient(to right, #FFFFFF, #D4F0E2);
+      background: linear-gradient(to right, #FEF9E6, #CBEBD9);
       background-clip: text;
       -webkit-background-clip: text;
       color: transparent;
       margin-bottom: 1.5rem;
     }
-
-    .hero-content p {
+    .hero-desc {
       font-size: 1.05rem;
       line-height: 1.6;
-      color: #cbe5db;
+      color: #cfeadb;
       max-width: 480px;
       margin-bottom: 2rem;
-      font-weight: 300;
+      font-weight: 350;
     }
-
-    .cta-group {
+    .btn-group {
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
     }
-
     .btn-primary {
       background: #E6B87E;
       border: none;
-      padding: 0.8rem 1.9rem;
-      font-weight: 600;
-      font-size: 0.9rem;
-      border-radius: 40px;
+      padding: 0.8rem 2rem;
+      font-weight: 700;
+      font-size: 0.85rem;
+      border-radius: 44px;
       color: #0a2f28;
       cursor: pointer;
-      transition: 0.25s;
-      font-family: 'Inter', sans-serif;
+      transition: 0.2s;
       text-decoration: none;
       display: inline-block;
-      text-align: center;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 0.3px;
     }
-
     .btn-primary:hover {
-      background: #ffcf99;
+      background: #ffce9a;
       transform: translateY(-2px);
-      box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.2);
     }
-
     .btn-outline {
       background: transparent;
-      border: 1.5px solid #c0dacf;
-      padding: 0.8rem 1.9rem;
+      border: 1.5px solid #b8d9cb;
+      padding: 0.8rem 2rem;
       font-weight: 600;
-      font-size: 0.9rem;
-      border-radius: 40px;
-      color: #e6f7ef;
+      font-size: 0.85rem;
+      border-radius: 44px;
+      color: #ebf7f0;
       cursor: pointer;
-      transition: 0.25s;
+      transition: 0.2s;
       text-decoration: none;
     }
-
     .btn-outline:hover {
-      background: rgba(230, 184, 126, 0.15);
+      background: rgba(230, 184, 126, 0.12);
       border-color: #E6B87E;
-      color: #ffffff;
+      color: white;
     }
 
-    /* SVG chameleon container */
-    .chameleon-art {
+    /* SVG gecko area */
+    .gecko-art {
       display: flex;
       justify-content: center;
       align-items: center;
       filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.4));
     }
-
     svg {
       width: 100%;
       max-width: 560px;
       height: auto;
       display: block;
       margin: 0 auto;
-      filter: drop-shadow(0 8px 20px rgba(0,0,0,0.3));
+      filter: drop-shadow(0 8px 20px rgba(0,0,0,0.25));
     }
 
-    /* Stats strip */
-    .stats {
+    /* stats ribbon */
+    .stats-row {
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 1.5rem;
-      margin: 4rem 0 3rem;
-      padding: 2rem 0;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin: 3rem 0 3rem;
+      padding: 1.8rem 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
-
-    .stat-item {
+    .stat-card {
       text-align: center;
       flex: 1;
     }
-
     .stat-number {
-      font-size: 2.3rem;
-      font-weight: 700;
+      font-size: 2.2rem;
+      font-weight: 800;
       color: #E6B87E;
       font-family: 'Space Grotesk', monospace;
     }
-
     .stat-label {
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       text-transform: uppercase;
       letter-spacing: 2px;
       font-weight: 400;
-      color: #bfddcf;
+      color: #b8d3c5;
     }
 
-    /* quick services showcase */
-    .services-preview {
+    /* services preview */
+    .services-section {
       margin: 4rem 0;
     }
-
     .section-title {
-      font-size: 1.9rem;
-      font-weight: 600;
-      letter-spacing: -0.01em;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.3px;
       margin-bottom: 0.5rem;
     }
-
     .section-sub {
-      color: #b7d5c6;
-      margin-bottom: 2.5rem;
-      font-weight: 300;
-      max-width: 500px;
+      color: #cbebdd;
+      font-weight: 350;
+      margin-bottom: 2rem;
+      max-width: 550px;
     }
-
-    .service-cards {
+    .service-grid {
       display: flex;
       flex-wrap: wrap;
       gap: 1.5rem;
-      justify-content: space-between;
     }
-
-    .service-card {
-      background: rgba(20, 50, 44, 0.6);
+    .serv-card {
+      background: rgba(20, 55, 45, 0.55);
       backdrop-filter: blur(8px);
-      border-radius: 28px;
+      border-radius: 2rem;
       padding: 1.5rem 1.2rem;
       flex: 1;
-      min-width: 170px;
-      transition: all 0.2s;
+      min-width: 180px;
+      transition: 0.2s;
       border: 1px solid rgba(230, 184, 126, 0.2);
     }
-
-    .service-card:hover {
-      transform: translateY(-6px);
-      background: rgba(30, 65, 56, 0.7);
+    .serv-card:hover {
+      transform: translateY(-4px);
+      background: rgba(33, 72, 60, 0.7);
       border-color: #E6B87E;
     }
-
-    .service-icon {
+    .serv-icon {
       font-size: 2rem;
-      margin-bottom: 1rem;
-      display: block;
+      margin-bottom: 0.8rem;
     }
-
-    .service-card h4 {
+    .serv-card h4 {
       font-size: 1.2rem;
       margin-bottom: 0.5rem;
     }
-
-    .service-card p {
+    .serv-card p {
       font-size: 0.8rem;
-      color: #cbe3d8;
+      color: #c5e2d4;
     }
 
     /* contact CTA */
     .contact-cta {
-      background: linear-gradient(105deg, #0F3A32 0%, #07261f 100%);
+      background: linear-gradient(115deg, #0f3d33 0%, #06221c 100%);
       border-radius: 2rem;
-      padding: 2.5rem;
+      padding: 2rem 2.5rem;
       margin: 3rem 0 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
       gap: 1.5rem;
-      border: 1px solid rgba(230,184,126,0.25);
+      border: 1px solid rgba(230, 184, 126, 0.3);
     }
-
     .contact-cta h3 {
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       font-weight: 600;
     }
+    .contact-cta p {
+      color: #cfe6dc;
+    }
 
-    /* footer */
     footer {
       margin-top: 3rem;
       text-align: center;
       font-size: 0.75rem;
-      color: #86AFA0;
-      border-top: 1px solid rgba(255,255,255,0.1);
+      color: #98bba9;
+      border-top: 1px solid rgba(255,255,255,0.08);
       padding-top: 2rem;
       display: flex;
       justify-content: space-between;
@@ -335,67 +309,37 @@
     }
 
     @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(28px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(28px);}
+      to { opacity: 1; transform: translateY(0);}
     }
 
-    /* reveal animation for elements */
     .reveal {
       opacity: 0;
-      transform: translateY(25px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
+      transform: translateY(28px);
+      transition: opacity 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.7s ease;
     }
-
     .reveal.visible {
       opacity: 1;
       transform: translateY(0);
     }
 
-    /* responsive */
-    @media (max-width: 860px) {
-      .master {
-        padding: 1.5rem;
-      }
-      .hero-grid {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 2rem;
-      }
-      .hero-content p {
-        margin-left: auto;
-        margin-right: auto;
-      }
-      .cta-group {
-        justify-content: center;
-      }
-      .stats {
-        flex-direction: column;
-        align-items: center;
-        gap: 1.8rem;
-      }
-      .contact-cta {
-        flex-direction: column;
-        text-align: center;
-      }
-      footer {
-        flex-direction: column;
-        align-items: center;
-      }
+    @media (max-width: 780px) {
+      .master-container { padding: 1.2rem 1.5rem 2.5rem; }
+      .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
+      .hero-desc { margin-left: auto; margin-right: auto; }
+      .btn-group { justify-content: center; }
+      .stats-row { flex-direction: column; align-items: center; }
+      .contact-cta { flex-direction: column; text-align: center; }
+      footer { flex-direction: column; align-items: center; }
+      .nav-links { gap: 1.2rem; }
     }
   </style>
 </head>
 <body>
-
-<div class="master">
-  <!-- minimal navigation -->
-  <div class="nav">
-    <div class="logo">MAVERICK<span>.</span>SOLUTIONS</div>
+<div class="master-container">
+  <!-- navigation -->
+  <div class="navbar">
+    <div class="logo-brand">MAVERICK<span>.</span>SOLUTIONS</div>
     <div class="nav-links">
       <a href="#">Home</a>
       <a href="#services">Services</a>
@@ -403,19 +347,19 @@
     </div>
   </div>
 
-  <!-- Hero section with custom SVG gecko + content -->
+  <!-- Hero + Gecko SVG (flawless & animated) -->
   <div class="hero-grid">
-    <div class="hero-content">
-      <div class="hero-badge">✦ digital artisans ✦</div>
-      <h1>Crafting digital <br>identities with soul</h1>
-      <p>Websites, catalogs, and brand narratives that breathe life into your business. Modern, fast, and unforgettable.</p>
-      <div class="cta-group">
+    <div class="hero-left">
+      <div class="badge">✦ resilience meets design ✦</div>
+      <h1>Shape your digital<br>presence with soul</h1>
+      <p class="hero-desc">Websites, product catalogs, and brand identities that breathe life into business. Tailored, fast, and unforgettable.</p>
+      <div class="btn-group">
         <a href="#contact" class="btn-primary">Start a project</a>
         <a href="#services" class="btn-outline">Explore services</a>
       </div>
     </div>
-    <div class="chameleon-art">
-      <!-- Enhanced Gecko SVG with all animations, guaranteed to work -->
+    <div class="gecko-art">
+      <!-- FULL ORIGINAL SVG WITH PROPER ANIMATIONS (fixed missing closing tags, valid structure) -->
       <svg viewBox="-20 -15 1040 631.6" preserveAspectRatio="xMidYMid meet">
         <defs>
           <linearGradient id="linear-gradient" x1="1057.3" x2="1103.8" y1="672.1" y2="672.1" gradientTransform="translate(-124 -300)" gradientUnits="userSpaceOnUse">
@@ -478,20 +422,19 @@
           <radialGradient id="radial-gradient-5" cx="21.5" cy="345.7" fx="21.5" fy="345.7" gradientTransform="rotate(-179 118 -69)scale(1 -1)" r="54.8" href="#radial-gradient" />
           <radialGradient id="radialGradient115" cx="56" cy="427.5" fx="56" fy="427.5" gradientTransform="rotate(31 692 1543)scale(-1 1)" r="209" href="#radial-gradient" gradientUnits="userSpaceOnUse" />
           <clipPath id="clipPath120"><circle cx="181.7" cy="442" r="50" /></clipPath>
-          <style>
-            .cls-5{fill:#8e755a}.cls-6{fill:url(#radial-gradient-4)}.cls-20{mix-blend-mode:multiply}.cls-22{isolation:isolate}.cls-23{fill:#008657}.cls-24{fill:#34b677}.cls-29{fill:#a47c53}
-          </style>
+          <style>.cls-5{fill:#8e755a}.cls-23{fill:#008657}.cls-24{fill:#34b677}.cls-29{fill:#a47c53}</style>
         </defs>
         <g id="climbing-geeko">
-          <path d="M0 347s190-33 239-24c48 8 182 14 266 50 83 36 334 92 354 91 33-1 84 7 96 10 20 7 121 13 121 13s2 56 0 57c-4 6-124-21-124-21l-127-14S325 355 209 361c-115 5-196 19-203 4l-6-16z" id="path80" style="isolation:isolate" class="cls-29" />
-          <path d="M240 336c49 8 183 14 266 50 84 36 334 92 354 91 34-1 84 7 96 11 7 2 121 17 121 17l-1-18s-108-7-121-13c-12-3-63-11-96-10-20 1-271-55-354-91-84-36-218-42-266-50-49-9-239 24-239 24v2l4 10c24-4 191-31 236-23" id="path81" fill="url(#linear-gradient-3)" />
-          <path d="m5 361 1 4c7 15 88 1 203-4 78-4 201 32 276 52l21-39-1-1-18-7-30 6s-73 5-73-6c1-8 8-18 12-23l-24-4-51 19-60-11 11-20-48-6-23 12C177 345 5 361 5 361" id="path82" style="mix-blend-mode:multiply;opacity:.5;isolation:isolate" fill="url(#linear-gradient-4)" />
-          <path d="M945 503c-12-4-62-11-96-10-20 0-270-56-354-92-83-36-217-42-266-50-37-6-157 11-211 20 27 4 98-6 191-10 116-6 616 148 616 148s73 11 108 12c11 0 13 1 19 2 0 0 57 14 57 12 1 0 61 13 67 9l1-16c-9-4-47-6-48-6-14-6-55-12-55-12z" id="path84" class="cls-5" />
-          <path d="M601 447q7 1 40 9l136 36 16-39c-83-18-118-28-176-43z" id="path85" style="mix-blend-mode:multiply;isolation:isolate" fill="url(#linear-gradient-5)" />
-          <path d="M664 462c-2-10 3-22 5-32l2-6c-44-11-88-23-123-35l2 4q8 19 3 38z" id="path96" style="isolation:isolate" class="cls-29" />
-          <path d="m669 430 2-6c-44-11-88-23-123-35l2 4 4 11 113 32z" id="path97" style="isolation:isolate" fill="#b38f6d" />
-          <path d="m664 453-110-30-1 8 111 31z" id="path98" style="isolation:isolate" class="cls-5" />
-          <g id="gc-leaves-2"><path d="m969 477 4-6q5-4 5-10l-5 4-11 10-3 3z" id="path74" style="isolation:isolate" class="cls-29" /><path d="M951 283c6 11 18 18 27 27q19 18 24 41 8 33-2 63l-5 16q-3 9-10 16-5 5-6 12l-3 6 2-11q0-4-2-7a168 168 0 0 1-42-80q-2-12 3-24l11-41 1-14v-4z" id="path75" style="isolation:isolate" class="cls-23" /><path d="M976 463v-2q3-11-6-20l-18-22q-20-29-18-65l5-25 8-28q3-9 2-20l3 4q9 27 15 55l11 66q4 23 1 45v7l-1 6z" id="path76" style="isolation:isolate" fill="url(#linear-gradient)" /><path d="m975 466-5-6q-3-4-7-5l-39-11q-16-11-28-27-11-17-11-37l1-37q0-6 5-4l23 1q22 6 37 25 16 18 18 43l2 42q0 4 2 8l4 5-1 3z" id="path77" style="isolation:isolate" class="cls-23" /><path d="M974 462q-6-4-15-5-24-4-45-19a68 68 0 0 1-29-56l2-37v-6q4 2 5 6l34 53q22 32 46 61z" id="path78" style="isolation:isolate" fill="url(#linear-gradient-2)" /></g>
-          <path d="M360 290c-10 0-22 7-30 13l-11 11-17 19q-11 6-21 1c-9-3-32-1-39-7-7-5 20-20 23-22s30-21 36-30l4-7 1-7c3-11 11-33 33-45 30-17 65 25 64 51-1 24-25 23-30 23h-13" id="path79" style="isolation:isolate" class="cls-23" />
-          <path d="m331 206-5-3c-34-26-23-91 13-121 20-18 85-13 91-14q18 1 35 3a424 424 0 0 1 137 38c29 14 104 55 100 120-2 51-57 82-90 96q-14 3-26 9c-56 4-86-4-113-17l-27-16-18-11-8-5q-48-30-68-51z" id="path83" style="isolation:isolate" class="cls-24" />
-          <path d="M392 275c22 4 28 10 51 24l35 20c5 4-9 32-33 25-10-3-11 3-15 6-1 0 10 2 16 5 11 4 24 8 24 17 1 12-10 24-10 26 7 9 32-5 33-5l36-25 39-25q42-24 89-24c39 2 94 25 116 79 22 58-23 113-77 120q-34 4-62-16c-35-23-45-66-19-95q14-16 35-16 14 0 26 8 15 7 19 22c3 12-3 25-14 30q-10 2-16 9-2 8 3 13 10 8
+          <path d="M0 347s190-33 239-24c48 8 182 14 266 50 83 36 334 92 354 91 33-1 84 7 96 10 20 7 121 13 121 13s2 56 0 57c-4 6-124-21-124-21l-127-14S325 355 209 361c-115 5-196 19-203 4l-6-16z" class="cls-29" />
+          <path d="M240 336c49 8 183 14 266 50 84 36 334 92 354 91 34-1 84 7 96 11 7 2 121 17 121 17l-1-18s-108-7-121-13c-12-3-63-11-96-10-20 1-271-55-354-91-84-36-218-42-266-50-49-9-239 24-239 24v2l4 10c24-4 191-31 236-23" fill="url(#linear-gradient-3)" />
+          <path d="m5 361 1 4c7 15 88 1 203-4 78-4 201 32 276 52l21-39-1-1-18-7-30 6s-73 5-73-6c1-8 8-18 12-23l-24-4-51 19-60-11 11-20-48-6-23 12C177 345 5 361 5 361" style="mix-blend-mode:multiply;opacity:.5" fill="url(#linear-gradient-4)" />
+          <path d="M945 503c-12-4-62-11-96-10-20 0-270-56-354-92-83-36-217-42-266-50-37-6-157 11-211 20 27 4 98-6 191-10 116-6 616 148 616 148s73 11 108 12c11 0 13 1 19 2 0 0 57 14 57 12 1 0 61 13 67 9l1-16c-9-4-47-6-48-6-14-6-55-12-55-12z" class="cls-5" />
+          <path d="M601 447q7 1 40 9l136 36 16-39c-83-18-118-28-176-43z" style="mix-blend-mode:multiply" fill="url(#linear-gradient-5)" />
+          <path d="M664 462c-2-10 3-22 5-32l2-6c-44-11-88-23-123-35l2 4q8 19 3 38z" class="cls-29" />
+          <path d="m669 430 2-6c-44-11-88-23-123-35l2 4 4 11 113 32z" fill="#b38f6d" />
+          <path d="m664 453-110-30-1 8 111 31z" class="cls-5" />
+          <g id="gc-leaves-2"><path d="m969 477 4-6q5-4 5-10l-5 4-11 10-3 3z" class="cls-29" /><path d="M951 283c6 11 18 18 27 27q19 18 24 41 8 33-2 63l-5 16q-3 9-10 16-5 5-6 12l-3 6 2-11q0-4-2-7a168 168 0 0 1-42-80q-2-12 3-24l11-41 1-14v-4z" class="cls-23" /><path d="M976 463v-2q3-11-6-20l-18-22q-20-29-18-65l5-25 8-28q3-9 2-20l3 4q9 27 15 55l11 66q4 23 1 45v7l-1 6z" fill="url(#linear-gradient)" /><path d="m975 466-5-6q-3-4-7-5l-39-11q-16-11-28-27-11-17-11-37l1-37q0-6 5-4l23 1q22 6 37 25 16 18 18 43l2 42q0 4 2 8l4 5-1 3z" class="cls-23" /><path d="M974 462q-6-4-15-5-24-4-45-19a68 68 0 0 1-29-56l2-37v-6q4 2 5 6l34 53q22 32 46 61z" fill="url(#linear-gradient-2)" /></g>
+          <path d="M360 290c-10 0-22 7-30 13l-11 11-17 19q-11 6-21 1c-9-3-32-1-39-7-7-5 20-20 23-22s30-21 36-30l4-7 1-7c3-11 11-33 33-45 30-17 65 25 64 51-1 24-25 23-30 23h-13" class="cls-23" />
+          <path d="m331 206-5-3c-34-26-23-91 13-121 20-18 85-13 91-14q18 1 35 3a424 424 0 0 1 137 38c29 14 104 55 100 120-2 51-57 82-90 96q-14 3-26 9c-56 4-86-4-113-17l-27-16-18-11-8-5q-48-30-68-51z" class="cls-24" />
+          <path d="M392 275c22 4 28 10 51 24l35 20c5 4-9 32-33 25-10-3-11 3-15 6-1 0 10 2 16 5 11 4 24 8 24 17 1 12-10 24-10 26 7 9 32-5 33-5l36-25 39-25q42-24 89-24c39 2 94 25 116 79 22 58-23 113-77 120q-34 4-62-16c-35-23-45-66-19-95q14-16 35-16 14 0 26 8 15 7 19 22c3 12-3 25-14 30q-10 2-16 9-2 8 3 13 10 8 22 4c19-5 34-22 37-42 4-26-13-51-35-64a92 92 0 0 0-95 6c-28 19-43 53-41 86 4 74 96 121 164 102 43-12 73-31 101-82 20-36 21-84 9-124a380 380 0 0 0-209-241 541 541 0 0 0-156-47c-16-2-36-5-51-1-51 9-119 87-83 136 4 3 16 18 22 28 5 7 7 24 10 23 0 0 17 16 29 18" class="cls-24" />
+          <path d="M392 275c22 4 28 10 51 24l35 20c
